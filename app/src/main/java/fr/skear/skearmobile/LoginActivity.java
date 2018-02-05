@@ -3,21 +3,19 @@ package fr.skear.skearmobile;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,6 +29,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.skear.skearmobile.model.beans.Hydra_member;
+import fr.skear.skearmobile.model.webservice.OpenDataWS;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -183,6 +184,52 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+
+            // Try AsyncTask we assigned
+            try {
+                AT_GET at_get = new AT_GET();
+                at_get.execute();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * this is the second Thread (il est interdit de lancer des thread différent de la gestion de l'interface graphique dans le thread principal)
+     */
+    public class AT_GET extends AsyncTask {
+
+        private ArrayList<Hydra_member> resultat = null;
+        private Exception exception = null;
+
+        /**
+         * Thread execute in background
+         */
+        @Override
+        protected Object doInBackground(Object[] objects) {
+
+            try {
+                resultat = OpenDataWS.getFieldsDuServeur();
+            } catch (Exception e) {
+                exception = e;
+            }
+
+            return null;
+        }
+
+        /**
+         * Thread détectant que doInBackground à terminé la requète. Il est désormais possible de manier le Thread Principal
+         */
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+
+            if (exception != null) {
+                exception.printStackTrace();
+            } else {
+
+            }
         }
     }
 
