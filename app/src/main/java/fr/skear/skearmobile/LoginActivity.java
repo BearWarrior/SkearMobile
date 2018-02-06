@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -30,7 +31,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.skear.skearmobile.model.beans.Hydra_member;
+import fr.skear.skearmobile.model.beans.Member;
 import fr.skear.skearmobile.model.webservice.OpenDataWS;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -192,6 +193,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            // Change Screen
+            Intent intent = new Intent(this, TasklistActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -200,7 +205,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     public class AT_GET extends AsyncTask {
 
-        private ArrayList<Hydra_member> resultat = null;
+        private ArrayList<Member> resultat = null;
         private Exception exception = null;
 
         /**
@@ -210,7 +215,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Object doInBackground(Object[] objects) {
 
             try {
-                resultat = OpenDataWS.getFieldsDuServeur();
+                resultat = OpenDataWS.getFieldsServeur();
             } catch (Exception e) {
                 exception = e;
             }

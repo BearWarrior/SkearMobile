@@ -4,15 +4,15 @@ package fr.skear.skearmobile.model.beans;
  * Created by Distructors on 05/02/2018.
  */
 
-public class Hydra_member {
+public class Member {
 
     private String _id;
     private String _type;
     private Integer id;
     private String title;
     private String content;
-    private String pathcoverimage;
-    private Boolean published;
+    private Integer priority;
+    private User user;
     private String createdAt;
 
     public String get_id() {
@@ -55,20 +55,20 @@ public class Hydra_member {
         this.content = content;
     }
 
-    public String getPathcoverimage() {
-        return pathcoverimage;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setPathcoverimage(String pathcoverimage) {
-        this.pathcoverimage = pathcoverimage;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
-    public Boolean getPublished() {
-        return published;
+    public User getUser() {
+        return user;
     }
 
-    public void setPublished(Boolean published) {
-        this.published = published;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getCreatedAt() {
@@ -78,4 +78,5 @@ public class Hydra_member {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
+
 }
