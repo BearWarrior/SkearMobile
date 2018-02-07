@@ -1,7 +1,5 @@
 package fr.skear.skearmobile.model.webservice;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -20,25 +18,36 @@ public class OpenDataWS {
     private static final String JSON_RESPONSE = "{\"member\":\"bob\",\"surname\":\"morane\"}";
 
     public static ArrayList<Member> getFieldsServeur() throws Exception {
-        Log.v("TAG", WS_URL);
+        //Log.v("TAG", WS_URL);
         //Lancer la requête
-        String reponseJson = OkHttpUtils.sendGetOkHttpRequest(WS_URL, TOKEN);
-        Log.v("TAG content", reponseJson);
+        //String reponseJson = OkHttpUtils.sendGetOkHttpRequest(WS_URL, TOKEN);
+        //Log.v("TAG content", reponseJson);
         Gson gson = new Gson();
 
-        Personne personne = gson.fromJson(JSON_RESPONSE, Personne.class);
 
-//        Resultat resultat = gson.fromJson(reponseJson, Resultat.class);
+        //Personne personne = gson.fromJson("{\"member\":\"bob\",\"surname\":\"morane\"}", Personne.class);
 
-        ArrayList<Member> members = new ArrayList<>();
+        //Personne personne = gson.fromJson(
+        //        "{\"member\":\"bob\",\"surname\":\"morane\", \"adress\": {\"street\":\"pouet\",\"number\":\"12\"}}",
+        //        Personne.class);
 
-        if (personne == null) {
+        Personne personne = gson.fromJson(
+                "{\"member\":\"bob\",\"surname\":\"morane\", \"adress\": {\"street\":\"pouet\",\"number\":\"12\"},\"cars\":[ {\"model\":\"2CV\", \"speed\":\"21\"},{\"model\":\"Ferrari\", \"speed\":\"37.1\"},{\"model\":\"cheval\", \"speed\":\"1\"}  ]}",
+                Personne.class);
+
+
+        //Resultat resultat = gson.fromJson(reponseJson, Resultat.class);
+
+        //ArrayList<Member> members = new ArrayList<>();
+
+        /*if (resultat == null) {
             throw new Exception("Variable resultat à null");
         } else if (personne.getMember() != null) {
             members = new ArrayList<>();
         }
 
-        return members;
+        return members;*/
 
+        return new ArrayList<Member>();
     }
 }
