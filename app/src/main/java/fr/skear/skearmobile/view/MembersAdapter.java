@@ -49,7 +49,8 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         final Member member = members.get(position);
 
         holder.tv_tasklisttitre.setText(member.getTitle());
-        holder.tv_tasklistdescription.setText(member.getContent().substring(0, 30));
+        String contentAdapted = member.getContent().length() > 30 ? member.getContent().substring(0, 30) : member.getContent();
+        holder.tv_tasklistdescription.setText(contentAdapted);
 
         // abonnement listner au click du cardview et detection de la bonne cardview cliqué
         holder.root_tasklist.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +93,6 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
 
     //Notre moyen de communication entre activity et adapter
     public interface OnMembersListener {
-
         void onClick(Member members);
-
     }
-
-
 }
