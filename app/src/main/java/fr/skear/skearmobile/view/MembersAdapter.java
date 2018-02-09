@@ -29,9 +29,9 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         this.onMembersListener = onMembersListener;
     }
 
-
     /**
-     * Méthode qui permet de créer une ligne mais que nous n'appellerons jamais nous-mêmes
+     * Méthode appelé par le recyclerview
+     * Méthode qui permet de CREER une ligne mais que nous n'appellerons jamais nous-mêmes
      */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,7 +41,8 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     }
 
     /**
-     * Méthode qui remplit une ligne créée mais que nous n'appellerons jamais nous-mêmes
+     * Méthode appelé par le recyclerview
+     * Méthode qui REMPLIT(AFFICHE) une ligne créée mais que nous n'appellerons jamais nous-mêmes
      */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
@@ -50,6 +51,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         holder.tv_tasklisttitre.setText(member.getTitle());
         holder.tv_tasklistdescription.setText(member.getContent().substring(0, 30));
 
+        // abonnement listner au click du cardview et detection de la bonne cardview cliqué
         holder.root_tasklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +63,8 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     }
 
     /**
-     * Méthode qui indique le nombre de lignes à créer mais que nous n'appellerons jamais nous-mêmes
+     * Méthode appelé par le recyclerview
+     * Méthode qui indique le NOMBRE TOTAL de lignes à créer mais que nous n'appellerons jamais nous-mêmes
      */
     @Override
     public int getItemCount() {
@@ -75,6 +78,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tv_tasklisttitre, tv_tasklistdescription;
+        // cardview
         public View root_tasklist;
 
         public ViewHolder(View itemView) {
@@ -86,7 +90,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         }
     }
 
-    //Notre moyen de communication
+    //Notre moyen de communication entre activity et adapter
     public interface OnMembersListener {
 
         void onClick(Member members);
