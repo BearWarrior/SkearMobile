@@ -1,7 +1,5 @@
 package fr.skear.skearmobile.model.webservice;
 
-import android.util.Log;
-
 import java.net.HttpURLConnection;
 
 import okhttp3.OkHttpClient;
@@ -17,7 +15,6 @@ public class OkHttpUtils {
      * Réalise une requête GET avec l'URL transmise en paramètre et retourne le résultat
      */
     public static String sendGetOkHttpRequest(String url, String token) throws Exception {
-        Log.w("TAG", url);
         OkHttpClient client = new OkHttpClient();
 
         //Création de la requête

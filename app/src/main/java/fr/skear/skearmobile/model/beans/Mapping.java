@@ -1,15 +1,25 @@
 package fr.skear.skearmobile.model.beans;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Distructors on 06/02/2018.
  */
 
 public class Mapping {
 
+    @SerializedName("@type")
     private String _type;
     private String variable;
     private String property;
     private Boolean required;
+
+    public Mapping() {
+        _type = "";
+        variable = "";
+        property = "";
+        required = false;
+    }
 
     public String get_type() {
         return _type;

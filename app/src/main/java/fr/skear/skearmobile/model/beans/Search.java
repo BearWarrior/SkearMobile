@@ -1,5 +1,8 @@
 package fr.skear.skearmobile.model.beans;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,10 +11,18 @@ import java.util.List;
 
 public class Search {
 
+    @SerializedName("@type")
     private String _type;
     private String template;
     private String variableRepresentation;
     private List<Mapping> mapping = null;
+
+    public Search() {
+        _type = "";
+        template = "";
+        variableRepresentation = "";
+        mapping = new ArrayList<Mapping>();
+    }
 
     public String get_type() {
         return _type;

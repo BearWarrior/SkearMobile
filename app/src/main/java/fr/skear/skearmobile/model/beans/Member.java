@@ -1,12 +1,16 @@
 package fr.skear.skearmobile.model.beans;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Distructors on 05/02/2018.
  */
 
 public class Member {
 
+    @SerializedName("@id")
     private String _id;
+    @SerializedName("@type")
     private String _type;
     private Integer id;
     private String title;
@@ -14,6 +18,17 @@ public class Member {
     private Integer priority;
     private User user;
     private String createdAt;
+
+    public Member() {
+        _id = "";
+        _type = "";
+        id = 0;
+        title = "";
+        content = "";
+        priority = 0;
+        user = new User();
+        createdAt = "";
+    }
 
     public String get_id() {
         return _id;

@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import fr.skear.skearmobile.model.beans.Member;
-import fr.skear.skearmobile.model.beans.Personne;
+import fr.skear.skearmobile.model.beans.Resultat;
 
 /**
  * Created by Distructors on 05/02/2018.
@@ -22,23 +22,31 @@ public class OpenDataWS {
     public static ArrayList<Member> getFieldsServeur() throws Exception {
         //Lancer la requête
         String reponseJson = OkHttpUtils.sendGetOkHttpRequest(WS_URL, TOKEN);
-        Log.v("TAG content", reponseJson);
+        Log.w("TAG", reponseJson);
         Gson gson = new Gson();
+        Resultat resultat = gson.fromJson(reponseJson, Resultat.class);
 
-        Personne personne = gson.fromJson(JSON_RESPONSE, Personne.class);
+        ArrayList<Member> members = new ArrayList<>();
 
-//        Resultat resultat = gson.fromJson(reponseJson, Resultat.class);
+//        if (resultat == null) {
+//            throw new Exception("Variable resultat à null");
+//        } else if (!resultat.getMember().isEmpty()) {
+//            return resultat.getMember();
+//        }
 
-        //ArrayList<Member> members = new ArrayList<>();
-
-        /*if (resultat == null) {
+        if (resultat == null) {
             throw new Exception("Variable resultat à null");
-        } else if (personne.getMember() != null) {
-            members = new ArrayList<>();
+        } else if (!resultat.getMember().isEmpty()) {
+//            for (Member member : resultat.getMember()) {
+//                members.add((Member) resultat.getMember());
+//            }
+            Member member = new Member();
+            member.setContent("yoloo");
+            member.setTitle("huehuehuhue");
+
+            members.add(member);
         }
 
-        return members;*/
-
-        return new ArrayList<Member>();
+        return members;
     }
 }

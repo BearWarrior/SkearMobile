@@ -1,16 +1,28 @@
 package fr.skear.skearmobile.model.beans;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Distructors on 06/02/2018.
  */
 
 public class User {
 
+    @SerializedName("@id")
     private String _id;
+    @SerializedName("@type")
     private String _type;
     private String email;
-    private Object fullname;
+    private String fullname;
     private String username;
+
+    public User() {
+        _id = "";
+        _type = "";
+        email = "";
+        fullname = "";
+        username = "";
+    }
 
     public String get_id() {
         return _id;
@@ -36,11 +48,11 @@ public class User {
         this.email = email;
     }
 
-    public Object getFullname() {
+    public String getFullname() {
         return fullname;
     }
 
-    public void setFullname(Object fullname) {
+    public void setFullname(String fullname) {
         this.fullname = fullname;
     }
 

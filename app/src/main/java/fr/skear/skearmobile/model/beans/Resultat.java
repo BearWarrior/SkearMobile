@@ -1,6 +1,8 @@
 package fr.skear.skearmobile.model.beans;
 
-import java.lang.reflect.Member;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,12 +11,24 @@ import java.util.List;
 
 public class Resultat {
 
+    @SerializedName("@context")
     private String _context;
+    @SerializedName("@id")
     private String _id;
+    @SerializedName("@type")
     private String _type;
     private List<Member> member = null;
     private Integer totalItems;
     private Search search;
+
+    public Resultat() {
+        _context = "";
+        _id = "";
+        _type = "";
+        member = new ArrayList<Member>();
+        totalItems = 0;
+        search = new Search();
+    }
 
     public String get_context() {
         return _context;
