@@ -128,7 +128,7 @@ public class TasklistActivity extends AppCompatActivity implements MembersAdapte
         protected Object doInBackground(Object[] objects) {
 
             try {
-                resultat = OpenDataWS.getFieldsServeur();
+                resultat = OpenDataWS.getInstance().getFieldsServeur();
             } catch (Exception e) {
                 exception = e;
             }

@@ -17,14 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="My Note" />
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:text="My Note"
+            android:textColor="@android:color/background_light" />
 
         <Button
             android:id="@+id/bt_chargeskearlisttask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Skear" />
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:text="Skear"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
     <TextView

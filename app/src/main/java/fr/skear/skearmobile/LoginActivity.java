@@ -31,6 +31,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.skear.skearmobile.model.beans.connection.Identifiant;
+import fr.skear.skearmobile.model.webservice.OpenDataWS;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -181,11 +184,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-
-            // Change Screen
-            Intent intent = new Intent(this, MainmenuActivity.class);
-            startActivity(intent);
+            mAuthTask.execute((String) null);
         }
     }
 
@@ -283,7 +282,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<String, String, Boolean> {
 
         private final String mEmail;
         private final String mPassword;
@@ -294,26 +293,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+        protected Boolean doInBackground(String... params) {
 
+            // login serveur api rest
+            Identifiant identifiant = new Identifiant(mEmail, mPassword);
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
+                return OpenDataWS.getInstance().signInServer(identifiant);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override
@@ -322,6 +312,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                // Change Screen
+                Intent intent = new Intent(LoginActivity.this, MainmenuActivity.class);
+                startActivity(intent);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
