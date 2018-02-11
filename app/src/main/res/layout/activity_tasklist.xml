@@ -7,17 +7,6 @@
     android:orientation="vertical"
     tools:context="fr.skear.skearmobile.TasklistActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:text="Liste des Notes"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Me" />
+            android:text="My Note" />
 
         <Button
             android:id="@+id/bt_chargeskearlisttask"

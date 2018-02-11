@@ -2,6 +2,7 @@ package fr.skear.skearmobile.model.beans;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by Distructors on 05/02/2018.
  */
 
-public class Resultat {
+public class Resultat implements Serializable {
 
     @SerializedName("@context")
     private String _context;

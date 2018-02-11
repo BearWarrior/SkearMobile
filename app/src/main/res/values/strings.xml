@@ -11,4 +11,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_menu_note">Posts it</string>
+    <string name="title_menu_article">Articles</string>
+    <string name="title_menu_film">Films/Séries/Acteurs</string>
 </resources>

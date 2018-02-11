@@ -2,11 +2,13 @@ package fr.skear.skearmobile.model.beans;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Distructors on 06/02/2018.
  */
 
-public class Mapping {
+public class Mapping implements Serializable {
 
     @SerializedName("@type")
     private String _type;

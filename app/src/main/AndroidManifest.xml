@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TasklistActivity"></activity>
+        <activity android:name=".TasklistActivity" />
+        <activity android:name=".DetailtaskActivity" />
+        <activity android:name=".MainmenuActivity"></activity>
     </application>
 
 </manifest>
