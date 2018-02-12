@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
-import fr.skear.skearmobile.model.beans.Member;
 import fr.skear.skearmobile.model.beans.Resultat;
 import fr.skear.skearmobile.model.beans.connection.Identifiant;
 import fr.skear.skearmobile.model.beans.connection.Token;
@@ -40,19 +40,20 @@ public class OpenDataWS {
         return INSTANCE;
     }
 
-    public ArrayList<Member> getFieldsServeur() throws Exception {
+    public <T> ArrayList<T> getFieldsServeur(String url) throws Exception {
         //Lancer la requête
-        String reponseJson = OkHttpUtils.sendGetOkHttpRequest(WS_URL, token);
+        String reponseJson = OkHttpUtils.sendGetOkHttpRequest(url, token);
 
         Gson gson = new Gson();
         Resultat resultat = gson.fromJson(reponseJson, Resultat.class);
 
-        ArrayList<Member> members = new ArrayList<>();
+        ArrayList<T> members = new ArrayList<T>();
 
         if (resultat == null) {
             throw new Exception("Variable resultat à null");
         } else if (!resultat.getMember().isEmpty()) {
-            for (Member member : resultat.getMember()) {
+            List<T> list = resultat.getMember();
+            for (T member : list) {
                 members.add(member);
             }
         }

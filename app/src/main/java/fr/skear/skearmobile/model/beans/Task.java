@@ -8,7 +8,9 @@ import java.io.Serializable;
  * Created by Distructors on 05/02/2018.
  */
 
-public class Member implements Serializable {
+public class Task implements Serializable {
+
+    public static final String WS_URL = "http://www.skear.fr/server/web/api/tasks";
 
     @SerializedName("@id")
     private String _id;
@@ -21,7 +23,7 @@ public class Member implements Serializable {
     private User user;
     private String createdAt;
 
-    public Member() {
+    public Task() {
         _id = "";
         _type = "";
         id = 0;
@@ -95,5 +97,4 @@ public class Member implements Serializable {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
-
 }

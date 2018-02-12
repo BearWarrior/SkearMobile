@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Distructors on 05/02/2018.
  */
 
-public class Resultat implements Serializable {
+public class Resultat<T> implements Serializable {
 
     @SerializedName("@context")
     private String _context;
@@ -18,7 +18,8 @@ public class Resultat implements Serializable {
     private String _id;
     @SerializedName("@type")
     private String _type;
-    private List<Member> member = null;
+    @SerializedName("member")
+    private List<T> tasks = null;
     private Integer totalItems;
     private Search search;
 
@@ -26,7 +27,7 @@ public class Resultat implements Serializable {
         _context = "";
         _id = "";
         _type = "";
-        member = new ArrayList<Member>();
+        tasks = new ArrayList<T>();
         totalItems = 0;
         search = new Search();
     }
@@ -55,12 +56,12 @@ public class Resultat implements Serializable {
         this._type = _type;
     }
 
-    public List<Member> getMember() {
-        return member;
+    public List<T> getMember() {
+        return tasks;
     }
 
-    public void setMember(List<Member> member) {
-        this.member = member;
+    public void setMember(List<T> member) {
+        this.tasks = member;
     }
 
     public Integer getTotalItems() {

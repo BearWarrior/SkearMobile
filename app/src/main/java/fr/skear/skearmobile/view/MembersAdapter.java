@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import fr.skear.skearmobile.R;
-import fr.skear.skearmobile.model.beans.Member;
+import fr.skear.skearmobile.model.beans.Task;
 
 /**
  * Created by booth09-mgr2 on 21/03/2017.
@@ -18,13 +18,13 @@ import fr.skear.skearmobile.model.beans.Member;
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
 
 
-    private ArrayList<Member> members;
+    private ArrayList<Task> members;
 
     //Pointeur vers une classe qui implémente OnMembersListener
     private OnMembersListener onMembersListener;
 
 
-    public MembersAdapter(ArrayList<Member> members, OnMembersListener onMembersListener) {
+    public MembersAdapter(ArrayList<Task> members, OnMembersListener onMembersListener) {
         this.members = members;
         this.onMembersListener = onMembersListener;
     }
@@ -46,7 +46,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
      */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Member member = members.get(position);
+        final Task member = members.get(position);
 
         holder.tv_tasklisttitre.setText(member.getTitle());
         String contentAdapted = member.getContent().length() > 30 ? member.getContent().substring(0, 30) : member.getContent();
@@ -93,6 +93,6 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
 
     //Notre moyen de communication entre activity et adapter
     public interface OnMembersListener {
-        void onClick(Member members);
+        void onClick(Task members);
     }
 }

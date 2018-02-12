@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import fr.skear.skearmobile.model.beans.Member;
+import fr.skear.skearmobile.model.beans.Task;
 
 public class DetailtaskActivity extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class DetailtaskActivity extends AppCompatActivity {
         tv_detail = findViewById(R.id.tv_detailtaskcontent);
 
         // getIntent() : objet qui permet de lancer cette écran , getExtras() : paramètres transmis, serializable : mettre format json ou xml
-        Member members = (Member) getIntent().getExtras().getSerializable(DETAIL_TASK_MEMBERS_KEY);
+        Task members = (Task) getIntent().getExtras().getSerializable(DETAIL_TASK_MEMBERS_KEY);
 
         tv_title.setText(members.getTitle());
         tv_detail.setText(members.getContent());

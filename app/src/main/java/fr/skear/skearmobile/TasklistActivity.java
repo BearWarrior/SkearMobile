@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import fr.skear.skearmobile.model.beans.Member;
+import fr.skear.skearmobile.model.beans.Task;
 import fr.skear.skearmobile.model.webservice.OpenDataWS;
 import fr.skear.skearmobile.view.MembersAdapter;
 
@@ -30,7 +30,7 @@ public class TasklistActivity extends AppCompatActivity implements MembersAdapte
     private static final int ID_ITEM1 = 1;
 
     // Données
-    private ArrayList<Member> members;
+    private ArrayList<Task> members;
 
     // Outils
     private MembersAdapter membersAdapter;
@@ -83,7 +83,7 @@ public class TasklistActivity extends AppCompatActivity implements MembersAdapte
 
     // click sur la cardview
     @Override
-    public void onClick(Member members) {
+    public void onClick(Task members) {
         Intent intent = new Intent(this, DetailtaskActivity.class);
         // putExtra : envoie des données sur la page avec une clé
         intent.putExtra(DetailtaskActivity.DETAIL_TASK_MEMBERS_KEY, members);
@@ -118,7 +118,7 @@ public class TasklistActivity extends AppCompatActivity implements MembersAdapte
      */
     public class AT_GET extends AsyncTask {
 
-        private ArrayList<Member> resultat = null;
+        private ArrayList<Task> resultat = null;
         private Exception exception = null;
 
         /**
@@ -128,7 +128,7 @@ public class TasklistActivity extends AppCompatActivity implements MembersAdapte
         protected Object doInBackground(Object[] objects) {
 
             try {
-                resultat = OpenDataWS.getInstance().getFieldsServeur();
+                resultat = OpenDataWS.getInstance().getFieldsServeur(Task.WS_URL);
             } catch (Exception e) {
                 exception = e;
             }
